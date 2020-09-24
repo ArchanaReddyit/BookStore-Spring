@@ -1,0 +1,12 @@
+.navbar {
+  font-size: large;
+  background-color: orangered;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a {
+  text-decoration: none;
+}
