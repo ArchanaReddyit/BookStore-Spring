@@ -4,31 +4,27 @@ import { User } from 'src/app/model/User';
 import { HttpClientService } from 'src/app/service/http-client.service';
 
 @Component({
-  selector: 'app-addusers',
-  templateUrl: './addusers.component.html',
-  styleUrls: ['./addusers.component.css'],
+  selector: 'app-viewuser',
+  templateUrl: './viewuser.component.html',
+  styleUrls: ['./viewuser.component.css'],
 })
-export class AddusersComponent implements OnInit {
+export class ViewuserComponent implements OnInit {
   @Input()
   user: User;
 
   @Output()
-  userAddedEvent = new EventEmitter();
-
-  newUser: User;
+  userDeletedEvent = new EventEmitter();
 
   constructor(
     private httpClientService: HttpClientService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.newUser = this.user;
-  }
+  ngOnInit(): void {}
 
-  addUser() {
-    this.httpClientService.addUser(this.user).subscribe((user) => {
-      this.userAddedEvent.emit(null);
+  deleteUser() {
+    this.httpClientService.deleteUser(this.user.id).subscribe((user) => {
+      this.userDeletedEvent.emit();
       this.router.navigate(['admin', 'users']);
     });
   }
